@@ -436,10 +436,16 @@ textarea{ min-height: 72px; resize: vertical; }
 .block.food{ border-left: 7px solid #ff7043; }
 .block.activity{ border-left: 7px solid #26a69a; }
 .block.move{ border-left: 7px solid #42a5f5; }
-/* ===== MAP SIZE FIX (FREE OPENSTREETMAP) ===== */
+/* --- Leaflet map must have an explicit height --- */
 #map {
   width: 100%;
+  height: 420px;       /* <- wichtig: ohne Höhe bleibt die Karte unsichtbar */
   min-height: 420px;
+  border-radius: 18px; /* optional, passt zu deinem Design */
+  overflow: hidden;
+}
+
+.leaflet-container {
+  width: 100%;
   height: 100%;
-  border-radius: 16px;
 }
