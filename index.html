@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html class="preload" lang="en">
+  <head>
+    <!-- Site designed for Drop by the team at 
+    ███╗   ██╗███████╗████████╗██╗     ██╗███████╗██╗   ██╗
+    ████╗  ██║██╔════╝╚══██╔══╝██║     ██║██╔════╝╚██╗ ██╔╝
+    ██╔██╗ ██║█████╗     ██║   ██║     ██║█████╗   ╚████╔╝ 
+    ██║╚██╗██║██╔══╝     ██║   ██║     ██║██╔══╝    ╚██╔╝  
+    ██║ ╚████║███████╗   ██║   ███████╗██║██║        ██║   
+    ╚═╝  ╚═══╝╚══════╝   ╚═╝   ╚══════╝╚═╝╚═╝        ╚═╝    -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+
+    <!-- The name of your site that shows up in the browser tab -->
+    <title>Welcome to my site</title>
+
+    <!-- Describe what your site is about -->
+    <meta name="description" content="A list of places you can find me on the web.">
+
+    <!-- This is the small icon that shows up in the browser tab -->
+    <link rel="shortcut icon" href="/images/favicon.png">
+
+    <!-- Styling for this site -->
+    <link rel="stylesheet" href="/css/styles.css">
+  </head>
+
+  <!-- This class is removed if the user has JavaScript enabled -->
+  <body class="no-js">
+    <header>
+      <!-- Dark mode toggle -->
+      <div class="mode-toggle">
+        <button class="[ toggle-button ] [ js-mode-toggle ]">
+          <span class="toggle-icon" aria-hidden="true"></span>
+          <span class="[ toggle-text ] [ js-mode-toggle-text ]">Switch to dark theme</span>
+        </button>
+      </div>
+    </header>
+    <main>
+      <section class="about">
+        <h1>Frodo Baggins</h1>
+        <p>Frodo is a proven leader who thrives in small teams and can go the distance.</p>
+      </section>
+      <nav class="links">
+        <!-- Update <a href=""> to point to your accounts -->
+        <!-- Update <span> to your usernames -->
+        <a href="mailto:frodo@bag.end">
+          <strong>E-mail</strong>
+          <span>frodo@bag.end</span>
+        </a>
+        <a href="https://twitter.com/frodobaggins">
+          <strong>Twitter</strong>
+          <span>@frodobaggins</span>
+        </a>
+        <a href="https://linkedin.com">
+          <strong>LinkedIn</strong>
+          <span>@frodobaggins</span>
+        </a>
+        <a href="https://github.com">
+          <strong>GitHub</strong>
+          <span>@frodobags</span>
+        </a>
+        <a href="https://codepen.io">
+          <strong>CodePen</strong>
+          <span>@frodobags</span>
+        </a>
+      </nav>
+    </main>
+
+    <!-- Dark mode button functionality -->
+    <script src="/js/dark-mode.js"></script>
+  
+  <section class="app-shell" id="planner">
+    <div class="app-card">
+      <div class="app-grid">
+        <div class="map" id="map"></div>
+
+        <div class="panel">
+          <h2>Japan Roadmap Planner</h2>
+          <div class="muted">
+            This version can use <b>Google Maps</b> for the most accurate, real-world map detail — if you add your own API key.
+            Otherwise it falls back to OpenStreetMap.
+          </div>
+
+          <div class="notice" id="keyNotice">
+            <b>Google Maps (recommended):</b> paste your API key below. It stays only in your browser (localStorage).
+            <span class="smalllink" onclick="openKeyHelp()">How do I get a key?</span>
+          </div>
+
+          <label>Google Maps API Key (optional)</label>
+          <div class="row">
+            <input id="gmKey" placeholder="AIzaSy..." />
+            <button class="btn secondary" onclick="saveKey()">Save</button>
+          </div>
+
+          <div class="row">
+            <div>
+              <label>Trip name</label>
+              <input id="tripName" placeholder="Japan Trip" />
+            </div>
+            <div>
+              <label>Travel mode</label>
+              <select id="travelMode">
+                <option value="TRANSIT">Transit</option>
+                <option value="DRIVING">Driving</option>
+                <option value="WALKING">Walking</option>
+                <option value="BICYCLING">Bicycling</option>
+              </select>
+            </div>
+          </div>
+
+          <label>Days</label>
+          <div class="row">
+            <input id="newDay" type="date" />
+            <button class="btn" onclick="addDay()">Add day</button>
+          </div>
+          <div id="dayPills" class="pills"></div>
+
+          <hr/>
+
+          <div class="row">
+            <div>
+              <label>Category</label>
+              <select id="category">
+                <option value="sleep">Sleep / Hotel</option>
+                <option value="food">Foodspot</option>
+                <option value="activity">Activity</option>
+                <option value="move">Move / Transfer</option>
+              </select>
+            </div>
+            <div>
+              <label>Start</label>
+              <input id="startTime" type="time" />
+            </div>
+            <div>
+              <label>End</label>
+              <input id="endTime" type="time" />
+            </div>
+          </div>
+
+          <label>Place / Address</label>
+          <input id="place" placeholder="e.g., Shibuya Crossing, Tokyo" />
+
+          <label>Notes</label>
+          <textarea id="notes" placeholder="reservation, tickets, must-try dish, etc."></textarea>
+
+          <div class="row" style="margin-top:10px">
+            <button class="btn" onclick="addStop()">Add stop</button>
+            <button class="btn secondary" onclick="openDayRoute()">Open day route (Google)</button>
+          </div>
+
+          <div class="row" style="margin-top:10px">
+            <button class="btn secondary" onclick="makeShareLink()">Share link</button>
+            <button class="btn secondary" onclick="exportJSON()">Export</button>
+            <button class="btn secondary" onclick="importJSON()">Import</button>
+            <button class="btn danger" onclick="resetAll()">Reset</button>
+          </div>
+
+          <div class="notice" id="status">Add a day to start planning.</div>
+
+          <div style="font-weight:900; margin-top: 14px;">Stops (drag to reorder)</div>
+          <div id="filters" class="chips" style="margin-top:10px;">
+            <div class="chip on" data-cat="sleep" onclick="toggleFilter('sleep')">🛏️ Sleep</div>
+            <div class="chip on" data-cat="food" onclick="toggleFilter('food')">🍜 Food</div>
+            <div class="chip on" data-cat="activity" onclick="toggleFilter('activity')">🎌 Activity</div>
+            <div class="chip on" data-cat="move" onclick="toggleFilter('move')">🚆 Move</div>
+          </div>
+          <div id="entries" class="entries"></div>
+          <div id="details" class="detailsCard" style="display:none;"></div>
+          <div class="timelineWrap">
+            <div style="font-weight:900; margin-top: 14px;">Day timeline</div>
+            <div id="timeline" class="timelineGrid"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/app.js"></script>
+
+</body>
+</html>
