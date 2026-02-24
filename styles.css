@@ -436,3 +436,10 @@ textarea{ min-height: 72px; resize: vertical; }
 .block.food{ border-left: 7px solid #ff7043; }
 .block.activity{ border-left: 7px solid #26a69a; }
 .block.move{ border-left: 7px solid #42a5f5; }
+/* ===== MAP SIZE FIX (FREE OPENSTREETMAP) ===== */
+#map {
+  width: 100%;
+  min-height: 420px;
+  height: 100%;
+  border-radius: 16px;
+}
